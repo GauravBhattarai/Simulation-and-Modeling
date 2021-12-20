@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<stdlib.h>
+void main()
+{
+    int i,j;
+   float ar[1000], oi[10]={425,372,395,415,340,370,410,382,365,394} ,ei, cl[10], sum=0.0, cr,x;
+	cr = 16.92;
+	ei = 4000.0/10.0;
+	for(i=0;i<10;i++)
+    {
+        x = oi[i]-ei;
+        cl[i] = (x*x)/ei;
+        sum += cl[i];
+    }
+    printf("\nclass\t\tOi\tEi\t((Oi-Ei)^2)/Ei\n");
+    for(i=0;i<10;i++)
+    {
+        x = i*100;
+        printf("%.0f-%.0f\t\t%.0f\t%.0f\t\t%.2f\n",x,(x+99),oi[i],ei,cl[i]);
+    }
+    printf("\nCalculated chi square = %.2f\n",sum);
+    if(sum<=cr)
+        printf("\nSince %.2f <= %.2f, the Null Hypothesis is accepted",sum,cr);
+    else
+        printf("\nSince %.2f > %.2f, the Null Hypothesis is not accepted",sum,cr);
+}
+

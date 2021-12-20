@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main()
+{
+    float a[10]={0.24,0.89,0.11,0.61,0.23,0.86,0.41,0.64,0.50,0.65},DA=0.41,in[10],inr[10],rin[10],D,temp=0,maxp=0,maxm=0;
+    int i,j,n=10;
+    for(i=0;i<n;i++){
+        for(j=i;j<n;j++){
+            if(a[i]>a[j]){
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+    }
+    for(i=1;i<=n;i++){
+        in[i-1]=(float)i/n;
+        inr[i-1]=in[i-1]-a[i-1];
+        rin[i-1]=a[i-1]-(((float)i-1)/n);
+        if(inr[i-1]>maxp)
+            maxp=inr[i-1];
+        if(rin[i-1]>maxm)
+            maxm=rin[i-1];
+    }
+    printf("Ri\ti/N\ti/N - Ri\tRi - (i-1)/N\n");
+    for(i=0;i<n;i++)
+        printf("%.2f\t%.2f\t%.2f\t\t%.2f\n",a[i],in[i],inr[i],rin[i]);
+    if(maxp>maxm)
+        D=maxp;
+    else
+        D=maxm;
+    printf("\nD(alpha)=%.2f\nD(calculated)=%.2f\n",DA,D);
+    if(D<DA)
+        printf("There is no chance to reject the hypothesis that the given random numbers are uniform.");
+    else
+        printf("There is no chance to accept the hypothesis that the given random numbers are uniform.");
+}

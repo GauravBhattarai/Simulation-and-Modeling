@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+int main()
+{
+    int i,n=1000;
+    float x[1000],y[1000],x1[1000],x2[1000],y1[1000],y2[1000],incircle=0.0,inrect=0.0,pi;
+    for(i=0;i<n;i++)
+    {
+        x[i]=1-(2*((rand()%1000)/1000.0));
+        y[i]=1-(2*((rand()%1000)/1000.0));
+        if((pow(x[i],2)+pow(y[i],2))<1)
+        {
+            x1[i]=x[i];
+            y1[i]=y[i];
+            x2[i]=1.0;
+            y2[i]=1.0;
+        }
+        else
+        {
+            x1[i]=0;
+            y1[i]=0;
+            x2[i]=0;
+            y2[i]=1;
+        }
+        incircle+=x2[i];
+        inrect+=y2[i];
+    }
+    pi=4*(incircle/inrect);
+    printf("x\ty\tx1\ty1\tx2\ty2\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%.3f\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f\n",x[i],y[i],x1[i],y1[i],x2[i],y2[i]);
+    }
+    printf("\nFor Circle = %.3f\nFor Rectangle = %.3f\nPI = %.3f",incircle,inrect,pi);
+    getch();
+    return 0;
+}
